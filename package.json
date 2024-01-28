@@ -2,8 +2,9 @@
   "name": "biz-server",
   "version": "0.0.0",
   "private": true,
+  "main": "./bin/www.js",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ."
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
