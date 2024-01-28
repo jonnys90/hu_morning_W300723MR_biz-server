@@ -8,12 +8,13 @@
 // var http = require('http');
 import app from "../app.js";
 import http from "http";
+import chalk from "chalk";
 
 /**
  * Get port from environment and store in Express.
  */
 
-let port = normalizePort(process.env.PORT || "3000");
+let port = normalizePort(process.env.PORT || "3030");
 app.set("port", port);
 
 /**
@@ -82,5 +83,6 @@ function onError(error) {
 
 function onListening() {
   let addr = server.address();
-  let bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
+  let bind = typeof addr === "string" ? addr : addr.port;
+  console.log(chalk.green(`Listening on http://localhost:${bind}/`));
 }
