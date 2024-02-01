@@ -7,6 +7,7 @@
 // var app = require('../app');
 // var http = require('http');
 import app from "../app.js";
+import connectToDb from "../model/dbAdapter.js";
 import http from "http";
 import chalk from "chalk";
 
@@ -85,4 +86,5 @@ function onListening() {
   let addr = server.address();
   let bind = typeof addr === "string" ? addr : addr.port;
   console.log(chalk.green(`Listening on http://localhost:${bind}/`));
+  connectToDb();
 }

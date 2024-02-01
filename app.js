@@ -1,7 +1,8 @@
 import express from "express";
 import path from "node:path";
 import cookieParser from "cookie-parser";
-import logger from "morgan";
+// import logger from "morgan";
+import logger from "./loggers/loggerAdapter.js";
 import * as url from "url";
 import cors from "cors";
 import errorMiddleware from "./middlewares/error.mw.js";
@@ -13,7 +14,7 @@ let app = express();
 
 app.use(cors());
 
-app.use(logger("dev"));
+app.use(logger());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
