@@ -30,8 +30,13 @@ const registerSchema = Joi.object({
         "Password must contain at least one uppercase, lowercase, special character(!@#$%^&*-), and number",
     }),
   image: Joi.object().keys({
-    url: Joi.string().uri({ scheme: ["http", "https"] }),
-    alt: Joi.string().min(2).max(256).allow(""),
+    url: Joi.string()
+      .uri({ scheme: ["http", "https"] })
+      .allow(""),
+    alt: Joi.string().min(2).max(256).allow("").when("url", {
+      is: Joi.exist(),
+      then: Joi.required(),
+    }),
   }),
   address: Joi.object()
     .keys({
