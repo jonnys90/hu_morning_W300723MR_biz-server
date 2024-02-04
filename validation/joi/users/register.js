@@ -1,4 +1,6 @@
 import Joi from "joi";
+import phoneRegex from "../../../utils/phoneRegex.js";
+import passwordRegex from "../../../utils/passwordRegex.js";
 
 const registerSchema = Joi.object({
   name: Joi.object()
@@ -8,20 +10,14 @@ const registerSchema = Joi.object({
       last: Joi.string().min(2).max(256).required(),
     })
     .required(),
-  phone: Joi.string()
-    .pattern(/0[0-9]{1,2}\-?\s?[0-9]{3}\s?[0-9]{4}/)
-    .required(),
+  phone: Joi.string().pattern(phoneRegex).required(),
   email: Joi.string()
     .email({ tlds: { allow: false } })
     .min(5)
     .max(500)
     .required(),
   password: Joi.string()
-    .pattern(
-      new RegExp(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*-])[A-Za-z\d!@#$%^&*-]{6,}$/
-      )
-    )
+    .pattern(new RegExp(passwordRegex))
     .min(7)
     .max(20)
     .required()
@@ -40,7 +36,7 @@ const registerSchema = Joi.object({
   }),
   address: Joi.object()
     .keys({
-      state: Joi.string().min(2).max(256),
+      state: Joi.string().min(2).max(256).allow(""),
       country: Joi.string().min(2).max(256).required(),
       city: Joi.string().min(2).max(256).required(),
       street: Joi.string().min(2).max(256).required(),
