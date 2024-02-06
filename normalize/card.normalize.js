@@ -20,6 +20,7 @@ const normalizeCards = (cards) => {
     },
     web: cards.web || undefined,
     zip: cards.zip || undefined,
+    bizNumber: cards.bizNumber || undefined,
   };
 };
 

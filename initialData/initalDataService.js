@@ -9,7 +9,7 @@ const initialUsers = async () => {
       },
       phone: "0500000000",
       email: "kenny@gmail.com",
-      password: "Aa123456!!",
+      password: "$2a$10$Tq3AH1Z0uEHo7MKbqMaUPOufejlQ8j8/Qs1Pne9YeKcyqOQVX28NK",
       image: {
         alt: "http://www.google.com",
       },
@@ -30,7 +30,7 @@ const initialUsers = async () => {
       },
       phone: "0500000000",
       email: "john@gmail.com",
-      password: "Aa123456!!",
+      password: "$2a$10$Tq3AH1Z0uEHo7MKbqMaUPOufejlQ8j8/Qs1Pne9YeKcyqOQVX28NK",
       image: {
         alt: "http://www.google.com",
       },
@@ -51,7 +51,7 @@ const initialUsers = async () => {
       },
       phone: "0500000000",
       email: "james@gmail.com",
-      password: "Aa123456!!",
+      password: "$2a$10$Tq3AH1Z0uEHo7MKbqMaUPOufejlQ8j8/Qs1Pne9YeKcyqOQVX28NK",
       image: {
         alt: "http://www.google.com",
       },

@@ -22,9 +22,9 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    minLength: 7,
-    maxLength: 20,
-    match: RegExp(passwordRegex),
+    // minLength: 7,
+    // maxLength: 20,
+    // match: RegExp(passwordRegex),
   },
   image: Image,
   address: Address,

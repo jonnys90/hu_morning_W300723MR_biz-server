@@ -1,25 +1,35 @@
 import Card from "./Card.js";
 
 //create
-const createCard = (cardData) => {
+const createCardMongo = (cardData) => {
   let card = new Card(cardData);
   return card.save();
 };
 
 //read
-const getAllCards = () => {
-  return Card.find({});
+const getAllCardsMongo = () => {
+  return Card.find();
 };
 //read
-const getCardById = (id) => {
+const getCardByIdMongo = (id) => {
   return Card.findById(id);
 };
+const getCardByBizNumberMongo = (bizNumber) => {
+  return Card.findOne({ bizNumber });
+};
 //update
-const updateCard = (id, cardData) => {
+const updateCardMongo = (id, cardData) => {
   return Card.findByIdAndUpdate(id, cardData, { new: true });
 };
 //delete
-const deleteCard = (id) => {
+const deleteCardMongo = (id) => {
   return Card.findByIdAndDelete(id);
 };
-export { createCard, getAllCards, getCardById, updateCard, deleteCard };
+export {
+  createCardMongo,
+  getAllCardsMongo,
+  getCardByIdMongo,
+  getCardByBizNumberMongo,
+  updateCardMongo,
+  deleteCardMongo,
+};
