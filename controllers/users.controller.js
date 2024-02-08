@@ -1,4 +1,10 @@
-import { getUserByEmail, createUser } from "../model/dbAdapter.js";
+import {
+  getUserByEmail,
+  createUser,
+  updateUser,
+  deleteUser,
+  patchIsBiz,
+} from "../model/dbAdapter.js";
 import handleError from "../utils/handleError.js";
 import { generateHash, cmpHash } from "../utils/bcrypt.js";
 import { generateToken } from "../token/jwt.js";
@@ -59,4 +65,52 @@ const loginController = async (req, res) => {
   }
 };
 
-export { loginController, registerController };
+const updateUserController = async (req, res) => {
+  /**
+   * validation | mw, joi
+   * update user:
+   * if(user is admin) then update user
+   * if user is not admin then if user._id === payload(token)._id then update user
+   * response user
+   */
+  try {
+    // if (!req.userData.isAdmin && req.userData._id !== req.params.id)
+    //   throw new Error("you not allowed to update");
+    let userFromDB = await updateUser(req.params.id, req.body);
+    userFromDB.password = undefined;
+    res.json(userFromDB);
+  } catch (err) {
+    console.log(err);
+    handleError(res, 400, err.message);
+  }
+};
+
+const patchIsBizController = async (req, res) => {
+  try {
+    let userFromDB = await patchIsBiz(req.params.id, req.body.isBusiness);
+    userFromDB.password = undefined;
+    res.json(userFromDB);
+  } catch (err) {
+    console.log(err);
+    handleError(res, 400, err.message);
+  }
+};
+
+const deleteUserController = async (req, res) => {
+  try {
+    let userFromDB = await deleteUser(req.params.id);
+    userFromDB.password = undefined;
+    res.json(userFromDB);
+  } catch (err) {
+    console.log(err);
+    handleError(res, 400, err.message);
+  }
+};
+
+export {
+  loginController,
+  registerController,
+  updateUserController,
+  deleteUserController,
+  patchIsBizController,
+};

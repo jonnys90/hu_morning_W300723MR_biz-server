@@ -22,6 +22,10 @@ const updateUserMongo = (id, userData) => {
   return User.findByIdAndUpdate(id, userData, { new: true });
 };
 
+const patchIsBizMongo = (id, isBusiness) => {
+  return User.updateOne({ _id: id }, { isBusiness: isBusiness });
+};
+
 const deleteUserMongo = (id) => {
   return User.findByIdAndDelete(id);
 };
@@ -33,4 +37,5 @@ export {
   getUserByEmailMongo,
   updateUserMongo,
   deleteUserMongo,
+  patchIsBizMongo,
 };

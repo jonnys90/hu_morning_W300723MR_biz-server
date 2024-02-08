@@ -6,6 +6,8 @@
 
 // var app = require('../app');
 // var http = require('http');
+import env from "dotenv";
+env.config();
 import app from "../app.js";
 import connectToDb from "../model/dbAdapter.js";
 import http from "http";

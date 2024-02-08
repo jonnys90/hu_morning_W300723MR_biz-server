@@ -4,7 +4,7 @@ const generateToken = (payload, expDate = "30d") => {
   return new Promise((resolve, reject) => {
     jwt.sign(
       payload,
-      "2r3417dg869ynb8h75t43",
+      process.env.TOKEN_PRIVATE_KEY,
       { expiresIn: expDate },
       (err, token) => {
         if (err) reject(err);
@@ -16,7 +16,7 @@ const generateToken = (payload, expDate = "30d") => {
 
 const verifyToken = (token) => {
   return new Promise((resolve, reject) => {
-    jwt.verify(token, "2r3417dg869ynb8h75t43", (err, payload) => {
+    jwt.verify(token, process.env.TOKEN_PRIVATE_KEY, (err, payload) => {
       if (err) reject(err);
       else resolve(payload);
     });
