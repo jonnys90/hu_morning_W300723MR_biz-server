@@ -14,6 +14,7 @@ import {
 } from "../../validation/validationAdapter.js";
 import authMiddleware from "../../middlewares/auth.mw.js";
 import adminOrOwn from "../../middlewares/adminOrOwn.mw.js";
+import objectIdParamsValidationMiddleware from "../../middlewares/objectIdParamsValidation.mw.js";
 const router = express.Router();
 
 // http://localhost:3030/api/users
@@ -36,6 +37,7 @@ router.post(
 router.put(
   "/:id",
   authMiddleware,
+  objectIdParamsValidationMiddleware,
   adminOrOwn,
   bodyValidationMiddleware(editUserValidation),
   updateUserController
@@ -44,11 +46,18 @@ router.put(
 router.patch(
   "/:id",
   authMiddleware,
+  objectIdParamsValidationMiddleware,
   adminOrOwn,
   //add patch validation
   patchIsBizController
 );
 
-router.delete("/:id", authMiddleware, adminOrOwn, deleteUserController);
+router.delete(
+  "/:id",
+  authMiddleware,
+  objectIdParamsValidationMiddleware,
+  adminOrOwn,
+  deleteUserController
+);
 
 export default router;

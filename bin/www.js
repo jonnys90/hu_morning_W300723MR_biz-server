@@ -93,9 +93,9 @@ function onListening() {
   let addr = server.address();
   let bind = typeof addr === "string" ? addr : addr.port;
   console.log(chalk.green(`Listening on http://localhost:${bind}/`));
-  connectToDb().then(() => {
+  connectToDb().then(async () => {
     //this function will be executed when i connected to db
-    initialUsers();
-    initialCards();
+    let bizId = await initialUsers();
+    if (bizId) await initialCards(bizId);
   });
 }

@@ -1,2 +1,2 @@
-1. delete user
-2. patch user
+1. get all my cards
+2. create new card

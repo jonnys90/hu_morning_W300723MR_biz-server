@@ -1,4 +1,5 @@
 import { createUser, createCard } from "../model/dbAdapter.js";
+import generateUniqueNumber from "../utils/generateUniqueNumber.js";
 
 const initialUsers = async () => {
   let users = [
@@ -67,15 +68,22 @@ const initialUsers = async () => {
     },
   ];
   try {
+    let bizId = "";
     for (let user of users) {
-      await createUser(user);
+      let userFromDb = await createUser(user);
+      if (!user.isAdmin && user.isBusiness) {
+        bizId = userFromDb._id;
+      }
+      // console.log("userFromDb", userFromDb);
     }
+    return bizId;
   } catch (err) {
+    return "";
     // console.log(err);
   }
 };
 
-const initialCards = async () => {
+const initialCards = async (bizId) => {
   let cards = [
     {
       title: "card 1",
@@ -89,6 +97,8 @@ const initialCards = async () => {
         street: "street 1",
         houseNumber: 10,
       },
+      bizNumber: await generateUniqueNumber(),
+      user_id: bizId,
     },
     {
       title: "card 2",
@@ -102,6 +112,8 @@ const initialCards = async () => {
         street: "street 1",
         houseNumber: 10,
       },
+      bizNumber: await generateUniqueNumber(),
+      user_id: bizId,
     },
     {
       title: "a wonderful new card",
@@ -122,6 +134,8 @@ const initialCards = async () => {
         houseNumber: 5,
         zip: 8920435,
       },
+      bizNumber: await generateUniqueNumber(),
+      user_id: bizId,
     },
   ];
   try {
@@ -129,7 +143,7 @@ const initialCards = async () => {
       await createCard(card);
     }
   } catch (err) {
-    // console.log(err);
+    console.log(err);
   }
 };
 

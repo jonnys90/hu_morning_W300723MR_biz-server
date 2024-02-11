@@ -13,12 +13,10 @@ const createCardSchema = Joi.object({
     .max(500)
     .required(),
   web: Joi.string().uri({ scheme: ["http", "https"] }),
-  image: Joi.object()
-    .keys({
-      url: Joi.string().uri({ scheme: ["http", "https"] }),
-      alt: Joi.string().min(2).max(256).allow(""),
-    })
-    .required(),
+  image: Joi.object().keys({
+    url: Joi.string().uri({ scheme: ["http", "https"] }),
+    alt: Joi.string().min(2).max(256).allow(""),
+  }),
   address: Joi.object()
     .keys({
       state: Joi.string().min(2).max(256).allow(""),
