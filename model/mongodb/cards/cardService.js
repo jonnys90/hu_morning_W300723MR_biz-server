@@ -1,7 +1,10 @@
+import debug from "debug";
+const log = debug("app:model:cardService");
 import Card from "./Card.js";
 
 //create
 const createCardMongo = (cardData) => {
+  log(cardData);
   let card = new Card(cardData);
   return card.save();
 };

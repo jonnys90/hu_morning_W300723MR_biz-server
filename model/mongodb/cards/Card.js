@@ -21,7 +21,7 @@ const CardSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true,
-    unique: true,
+    // unique: true,
     match: RegExp(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/),
   },
   web: {

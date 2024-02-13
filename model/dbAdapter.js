@@ -63,10 +63,14 @@ const patchIsBiz = (id, isBusiness) => {
 //cards
 const createCard = async (card) => {
   //normalizeCard
+  // try {
   card = await normalizeCards(card);
   if (DB === "mongo") {
     return createCardMongo(card);
   }
+  // } catch (err) {
+  //   return Promise.reject(err);
+  // }
 };
 
 const getCardByBizNumber = (bizNumber) => {

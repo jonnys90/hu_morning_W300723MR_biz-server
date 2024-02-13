@@ -6,6 +6,8 @@
 
 // var app = require('../app');
 // var http = require('http');
+import debug from "debug";
+let log = debug("app:server");
 import env from "dotenv";
 env.config();
 import app from "../app.js";
@@ -93,6 +95,7 @@ function onListening() {
   let addr = server.address();
   let bind = typeof addr === "string" ? addr : addr.port;
   console.log(chalk.green(`Listening on http://localhost:${bind}/`));
+  log(chalk.green(`Listening on http://localhost:${bind}/`));
   connectToDb().then(async () => {
     //this function will be executed when i connected to db
     let bizId = await initialUsers();

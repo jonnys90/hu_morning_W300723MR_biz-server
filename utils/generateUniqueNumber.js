@@ -21,7 +21,9 @@ const generateUniqueNumber = async () => {
       throw new Error("random number not found");
     }
     return randomNumber;
-  } catch (err) {}
+  } catch (err) {
+    return Promise.reject(err);
+  }
 };
 
 export default generateUniqueNumber;
