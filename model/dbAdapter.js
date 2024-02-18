@@ -13,6 +13,9 @@ import {
   getAllCardsMongo,
   getCardByIdMongo,
   getAllMyCardsMongo,
+  updateCardMongo,
+  updateLikeCardMongo,
+  deleteCardMongo,
 } from "./mongodb/cards/cardService.js";
 import normalizeUser from "./../normalize/user.normalize.js";
 import normalizeCards from "../normalize/card.normalize.js";
@@ -98,6 +101,24 @@ const getAllMyCards = (user_id) => {
   }
 };
 
+const updateCard = (card_id, card) => {
+  if (DB === "mongo") {
+    return updateCardMongo(card_id, card);
+  }
+};
+
+const updateLikeCard = (card_id, likes) => {
+  if (DB === "mongo") {
+    return updateLikeCardMongo(card_id, likes);
+  }
+};
+
+const deleteCard = (id) => {
+  if (DB === "mongo") {
+    return deleteCardMongo(id);
+  }
+};
+
 export default connectToDb;
 export {
   createUser,
@@ -110,4 +131,7 @@ export {
   patchIsBiz,
   getCardById,
   getAllMyCards,
+  updateCard,
+  updateLikeCard,
+  deleteCard,
 };

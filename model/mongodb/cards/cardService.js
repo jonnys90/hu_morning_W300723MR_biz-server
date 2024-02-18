@@ -15,6 +15,7 @@ const getAllCardsMongo = () => {
 };
 //read
 const getCardByIdMongo = (id) => {
+  console.log("id from mongo", id);
   return Card.findById(id);
 };
 const getCardByBizNumberMongo = (bizNumber) => {
@@ -28,6 +29,11 @@ const getAllMyCardsMongo = (user_id) => {
 const updateCardMongo = (id, cardData) => {
   return Card.findByIdAndUpdate(id, cardData, { new: true });
 };
+//oran m
+const updateLikeCardMongo = (id, likes) => {
+  return Card.findByIdAndUpdate(id, { likes }, { new: true });
+  // return Card.findByIdAndUpdate(id, {likes: likes}, { new: true });
+};
 //delete
 const deleteCardMongo = (id) => {
   return Card.findByIdAndDelete(id);
@@ -39,5 +45,6 @@ export {
   getCardByBizNumberMongo,
   getAllMyCardsMongo,
   updateCardMongo,
+  updateLikeCardMongo,
   deleteCardMongo,
 };
